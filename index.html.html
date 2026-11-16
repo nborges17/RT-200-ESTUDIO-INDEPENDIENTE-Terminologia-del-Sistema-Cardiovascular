@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terminología Cardiovascular</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=PT+Serif:wght@400;700&display=swap">
+<style>
+/* Layout: una columna de lectura (máx. 720px), navegación de actividades en pestañas, una actividad visible a la vez. */
+:root {
+  --bg: #fbfaf9;
+  --surface: #ffffff;
+  --fg: #1d2224;
+  --muted: #5b6468;
+  --line: #dcdfe0;
+  --accent: #c94a00;
+  --accent-ink: #ffffff;
+  --accent-soft: #fbe9de;
+  --ok: #1d6f68;
+  --ok-soft: #dff1ee;
+  --bad: #a8261c;
+  --bad-soft: #f9e2df;
+  --font-display: "PT Serif", Georgia, "Times New Roman", serif;
+  --font-body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131718; --surface: #1c2224; --fg: #eceeee; --muted: #a2adb0; --line: #353e41;
+    --accent: #ff8a4c; --accent-ink: #1a0d04; --accent-soft: #3a2518;
+    --ok: #6fd0c5; --ok-soft: #173532; --bad: #ff9a90; --bad-soft: #3d1f1c;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131718; --surface: #1c2224; --fg: #eceeee; --muted: #a2adb0; --line: #353e41;
+  --accent: #ff8a4c; --accent-ink: #1a0d04; --accent-soft: #3a2518;
+  --ok: #6fd0c5; --ok-soft: #173532; --bad: #ff9a90; --bad-soft: #3d1f1c;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 24px 48px;
+}
+main { max-width: 720px; margin: 0 auto; }
+header { padding-bottom: 20px; }
+.kicker { font-size: 12px; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin: 0 0 8px; }
+h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(28px, 6vw, 40px); line-height: 1.15; margin: 0 0 12px; text-wrap: balance; }
+.lede { color: var(--muted); margin: 0; max-width: 60ch; }
+nav { display: flex; gap: 8px; overflow-x: auto; padding: 4px 0 12px; scrollbar-width: thin; }
+nav button {
+  flex: 0 0 auto; font: inherit; font-size: 14px; font-weight: 500; color: var(--fg); background: var(--surface);
+  border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+}
+nav button[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+nav button .dot { width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid currentColor; opacity: .55; }
+nav button.done .dot { background: var(--ok); border-color: var(--ok); opacity: 1; }
+nav button[aria-selected="true"].done .dot { background: var(--accent-ink); border-color: var(--accent-ink); }
+button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+section.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 24px 20px; }
+h2 { font-family: var(--font-display); font-weight: 400; font-size: 24px; margin: 0 0 6px; text-wrap: balance; }
+.how { color: var(--muted); margin: 0 0 20px; font-size: 15px; }
+.count { font-size: 13px; color: var(--muted); margin: 0 0 8px; font-variant-numeric: tabular-nums; }
+.q { font-family: var(--font-display); font-weight: 400; font-size: 20px; line-height: 1.35; margin: 0 0 16px; }
+.opts { display: grid; gap: 10px; }
+.opt {
+  font: inherit; text-align: left; color: var(--fg); background: var(--bg); border: 1px solid var(--line);
+  border-radius: 8px; padding: 12px 14px; cursor: pointer; min-width: 0;
+}
+.opt:hover:not(:disabled) { border-color: var(--accent); }
+.opt:disabled { cursor: default; }
+.opt.right { background: var(--ok-soft); border-color: var(--ok); }
+.opt.wrong { background: var(--bad-soft); border-color: var(--bad); }
+.fb { margin-top: 16px; min-height: 0; }
+.fb p { margin: 0 0 12px; }
+.fb .ok { color: var(--ok); font-weight: 700; }
+.fb .no { color: var(--bad); font-weight: 700; }
+.btn {
+  font: inherit; font-weight: 700; background: var(--accent); color: var(--accent-ink); border: 0; border-radius: 8px;
+  padding: 11px 18px; cursor: pointer;
+}
+.btn.ghost { background: transparent; color: var(--fg); border: 1px solid var(--line); font-weight: 500; }
+.row { display: flex; gap: 10px; flex-wrap: wrap; }
+.score { font-family: var(--font-display); font-size: 40px; margin: 0 0 4px; font-variant-numeric: tabular-nums; }
+.end p { margin: 0 0 16px; }
+.next-step { background: var(--accent-soft); border-radius: 8px; padding: 14px 16px; }
+/* tarjetas */
+.card {
+  display: block; width: 100%; min-height: 200px; font: inherit; color: var(--fg); background: var(--bg);
+  border: 1px solid var(--line); border-radius: 10px; padding: 24px 20px; cursor: pointer; text-align: center;
+  display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 10px; margin-bottom: 14px;
+}
+.card .term { font-family: var(--font-display); font-size: 28px; line-height: 1.2; }
+.card .hint { font-size: 13px; color: var(--muted); }
+.card .def { font-size: 18px; max-width: 40ch; }
+.card .root { font-size: 14px; color: var(--accent); font-weight: 700; }
+.card.flipped { background: var(--accent-soft); border-color: var(--accent); }
+/* pareo */
+.match { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; }
+.match .col { display: grid; gap: 10px; align-content: start; }
+.match .opt { text-align: center; }
+.match .opt.sel { border-color: var(--accent); background: var(--accent-soft); }
+.match .opt.shake { border-color: var(--bad); background: var(--bad-soft); }
+.tries { font-size: 14px; color: var(--muted); margin-top: 14px; font-variant-numeric: tabular-nums; }
+.suffixes { margin-top: 20px; border-top: 1px solid var(--line); padding-top: 16px; }
+.suffixes h3 { font-family: var(--font-display); font-weight: 400; font-size: 18px; margin: 0 0 10px; }
+.suffixes dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; margin: 0; font-size: 15px; }
+.suffixes dt { font-weight: 700; color: var(--accent); }
+.suffixes dd { margin: 0; }
+@media (max-width: 420px) { .match { gap: 8px; } .card .term { font-size: 24px; } }
+@media (prefers-reduced-motion: no-preference) { .opt, nav button { transition: background .15s, border-color .15s; } }
+body { margin: 0; }
+</style>
+</head>
+<body>
+
+<main>
+  <header>
+    <p class="kicker">RT-200 · Estudio independiente</p>
+    <h1>Terminología del Sistema Cardiovascular</h1>
+    <p class="lede">Practica con las seis actividades, en el orden que prefieras. Son de repaso y no se califican. Cuando termines, regresa a Elentra para tomar la prueba.</p>
+  </header>
+  <nav id="tabs" role="tablist" aria-label="Actividades"></nav>
+  <section class="panel" id="panel" role="tabpanel" aria-live="polite"></section>
+</main>
+
+<script>
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+
+/* ---------- Datos ---------- */
+const CARDS = [
+  ["Sístole","Fase de contracción del corazón que impulsa la sangre hacia las arterias y los pulmones.",""],
+  ["Diástole","Fase de relajación que permite el llenado de las cavidades cardíacas.",""],
+  ["Pericardio","Membrana fibroserosa que rodea y protege al corazón.",""],
+  ["Miocardio","Capa muscular intermedia del corazón; responsable de su capacidad contráctil.","mio = músculo · cardio = corazón"],
+  ["Endocardio","Capa interna que recubre las cavidades cardíacas y las válvulas.",""],
+  ["Válvula tricúspide","Ubicada entre la aurícula derecha y el ventrículo derecho; regula el flujo unidireccional.",""],
+  ["Aorta","La arteria más grande del cuerpo; emerge del ventrículo izquierdo y distribuye sangre oxigenada.",""],
+  ["Frecuencia cardíaca","Número de latidos por minuto. En adultos sanos: 60–100 lpm.",""],
+  ["Cardiomegalia","Agrandamiento del corazón.","cardio = corazón · megalia = agrandamiento"],
+  ["Vasoconstricción","Disminución del diámetro de los vasos.","vaso = conducto que transporta sangre"],
+  ["Vasodilatación","Aumento del diámetro de los vasos.","vaso = conducto que transporta sangre"],
+  ["Vasculitis","Inflamación de los vasos sanguíneos.","vaso + itis = inflamación"],
+  ["Arteriosclerosis","Endurecimiento de las arterias.","arterio = arteria · esclerosis = endurecimiento"],
+  ["Venopunción","Punción de una vena.","veno = vena"],
+  ["Hemorragia","Salida de sangre fuera de los vasos.","hemo = sangre"],
+  ["Hematoma","Acumulación de sangre en un tejido.","hemato = sangre"],
+  ["Miocarditis","Inflamación del músculo cardíaco.","mio + cardio + itis"],
+  ["Arteriola","Rama pequeña de una arteria.","arterio = arteria"],
+  ["Vénula","Vena pequeña.","veno = vena"]
+];
+
+const ROOTS = [
+  ["cardio","corazón"],["vaso","conducto que transporta sangre"],["arterio","arteria"],
+  ["veno","vena"],["hemo / hemato","sangre"],["mio","músculo"]
+];
+
+/* En cada pregunta, la primera opción (o[0]) es la correcta; el orden se mezcla al mostrarla. */
+const Q_DESCOMPONER = [
+  {q:"Cardiomegalia = cardio + megalia. ¿Qué significa?",o:["Agrandamiento del corazón","Inflamación del corazón","Estudio del corazón","Enfermedad del músculo"],e:"Cardio es corazón y megalia es agrandamiento."},
+  {q:"¿Qué significa vasculitis?",o:["Inflamación de los vasos sanguíneos","Endurecimiento de los vasos","Estudio de los vasos","Aumento del diámetro de los vasos"],e:"Vascul(o) se refiere a los vasos y el sufijo -itis indica inflamación."},
+  {q:"¿Qué significa miocarditis?",o:["Inflamación del músculo cardíaco","Enfermedad del músculo","Agrandamiento del corazón","Inflamación de las arterias"],e:"Mio (músculo) + cardio (corazón) + itis (inflamación)."},
+  {q:"¿Qué significa venografía?",o:["Estudio radiográfico de las venas","Punción de una vena","Estudio radiográfico de las arterias","Inflamación de las venas"],e:"Veno es vena y -grafía es registro por imagen. La arteriografía es el equivalente para las arterias."},
+  {q:"¿Qué significa hematología?",o:["Estudio de la sangre","Salida de sangre fuera de los vasos","Acumulación de sangre en un tejido","Proteína que transporta oxígeno"],e:"Hemato es sangre y -logía es estudio."},
+  {q:"¿Qué significa arteriosclerosis?",o:["Endurecimiento de las arterias","Inflamación de las arterias","Rama pequeña de una arteria","Estudio radiográfico de las arterias"],e:"Arterio es arteria y esclerosis es endurecimiento."},
+  {q:"¿Qué significa miopatía?",o:["Enfermedad del músculo","Inflamación del músculo","Músculo del corazón","Estudio del músculo"],e:"Mio es músculo y -patía es enfermedad."},
+  {q:"¿Qué significa vasoconstricción?",o:["Disminución del diámetro de los vasos","Aumento del diámetro de los vasos","Inflamación de los vasos","Punción de un vaso"],e:"Constricción es estrechamiento. Lo opuesto es la vasodilatación."},
+  {q:"¿Qué es una vénula?",o:["Una vena pequeña","Una arteria pequeña","Un vaso microscópico de intercambio","Una válvula del corazón"],e:"El sufijo -ula indica pequeño: arteriola es una arteria pequeña y vénula es una vena pequeña."},
+  {q:"Un hematoma es…",o:["Acumulación de sangre en un tejido","Salida de sangre fuera de los vasos","Estudio de la sangre","Proteína de la sangre"],e:"Se diferencia de la hemorragia, que es la salida de sangre fuera de los vasos."}
+];
+
+const Q_CIRCULACION = [
+  {q:"Vasos de alta presión, con paredes gruesas y elásticas que llevan sangre desde el corazón:",o:["Arterias","Venas","Capilares"],e:"Las arterias transportan la sangre hacia afuera del corazón. Nota: la arteria pulmonar es la excepción y lleva sangre desoxigenada."},
+  {q:"Vasos de baja presión que poseen válvulas internas:",o:["Venas","Arterias","Capilares"],e:"Las válvulas evitan que la sangre retroceda en su camino de regreso al corazón."},
+  {q:"Vasos microscópicos donde ocurre el intercambio de oxígeno, nutrientes y desechos:",o:["Capilares","Arterias","Venas"],e:"Los capilares conectan arterias y venas y permiten el intercambio con los tejidos."},
+  {q:"Las aurículas son las cavidades…",o:["superiores, que reciben la sangre entrante","inferiores, que bombean la sangre","superiores, que bombean la sangre al cuerpo","inferiores, que reciben la sangre entrante"],e:"Los ventrículos, en la parte inferior, son los que bombean sangre hacia el cuerpo y los pulmones."},
+  {q:"La aorta emerge del…",o:["ventrículo izquierdo","ventrículo derecho","aurícula izquierda","aurícula derecha"],e:"Es la arteria más grande del cuerpo y distribuye sangre oxigenada."},
+  {q:"La válvula tricúspide se ubica entre…",o:["la aurícula derecha y el ventrículo derecho","la aurícula izquierda y el ventrículo izquierdo","el ventrículo izquierdo y la aorta","el ventrículo derecho y la arteria pulmonar"],e:"Regula el flujo en una sola dirección. La mitral cumple esa función en el lado izquierdo."},
+  {q:"¿Qué capa del corazón es la capa muscular intermedia?",o:["Miocardio","Endocardio","Pericardio"],e:"Mio = músculo. El endocardio es la capa interna y el pericardio es la membrana que rodea al corazón."},
+  {q:"¿Qué estructura recubre las cavidades cardíacas y las válvulas por dentro?",o:["Endocardio","Miocardio","Pericardio"],e:"Endo significa dentro."},
+  {q:"La sístole es la fase de…",o:["contracción, que expulsa la sangre","relajación, que permite el llenado","cierre de las válvulas","intercambio de gases"],e:"La diástole es la relajación que permite el llenado de las cavidades."},
+  {q:"El corazón está ubicado en el…",o:["mediastino, ligeramente inclinado hacia la izquierda","mediastino, inclinado hacia la derecha","abdomen superior","espacio pleural derecho"],e:"Es un órgano muscular hueco ubicado en el mediastino."}
+];
+
+const Q_ESTUDIOS = [
+  {q:"El electrocardiograma (ECG) registra…",o:["la actividad eléctrica del corazón","imágenes en tiempo real de las cavidades","las obstrucciones de las arterias","los niveles de colesterol"],e:"Detecta arritmias, infartos y otras anomalías."},
+  {q:"El ecocardiograma utiliza…",o:["ultrasonido","rayos X con contraste","un registro eléctrico","una muestra de sangre"],e:"Crea imágenes en tiempo real de la estructura y la función cardíacas."},
+  {q:"¿Qué estudio usa medio de contraste para visualizar arterias y venas y detectar obstrucciones?",o:["Angiografía","Ecocardiograma","Electrocardiograma","Análisis de sangre"],e:"La angiografía es una técnica de imagen con contraste."},
+  {q:"Las troponinas son marcadores de daño cardíaco que se detectan en…",o:["un análisis de sangre","un electrocardiograma","un ecocardiograma","una arteriografía"],e:"El análisis de sangre también mide colesterol y triglicéridos."},
+  {q:"¿Cuál de estos estudios NO usa radiación ionizante?",o:["Ecocardiograma","Angiografía","Arteriografía","Venografía"],e:"El ultrasonido no usa radiación ionizante. La angiografía, la arteriografía y la venografía son estudios radiográficos con contraste."},
+  {q:"Sospecha de arritmia: ¿qué estudio registra el ritmo del corazón?",o:["Electrocardiograma","Venografía","Angiografía","Hematología"],e:"Una arritmia es un ritmo anormal: rápido (taquicardia), lento (bradicardia) o irregular (fibrilación)."},
+  {q:"¿Cómo se llama el estudio radiográfico de las arterias?",o:["Arteriografía","Venografía","Ecocardiografía","Hematología"],e:"Arterio = arteria, -grafía = registro por imagen."},
+  {q:"En un infarto agudo de miocardio ocurre…",o:["un bloqueo del flujo sanguíneo a una zona del músculo cardíaco","un ritmo cardíaco irregular sin daño del tejido","una presión arterial elevada de forma crónica","un corazón que no bombea eficientemente"],e:"El bloqueo provoca necrosis tisular. Las otras opciones describen arritmia, hipertensión e insuficiencia cardíaca."}
+];
+
+const Q_FINAL = [
+  {q:"Cardio = corazón. ¿Qué es un cardiólogo?",o:["Especialista en el corazón","Estudio del corazón","Agrandamiento del corazón","Inflamación del corazón"],e:"-logo se refiere al especialista; -logía es el estudio."},
+  {q:"¿Qué significa vasodilatación?",o:["Aumento del diámetro de los vasos","Disminución del diámetro de los vasos","Inflamación de los vasos","Endurecimiento de los vasos"],e:"Dilatar es ensanchar."},
+  {q:"¿Qué vasos regresan la sangre al corazón?",o:["Venas","Arterias","Capilares","Arteriolas"],e:"Son de baja presión y tienen válvulas internas."},
+  {q:"La frecuencia cardíaca normal en un adulto sano es de…",o:["60–100 lpm","30–50 lpm","100–140 lpm","140–180 lpm"],e:"Por debajo es bradicardia y por encima es taquicardia."},
+  {q:"¿Cuál es la diferencia entre hemorragia y hematoma?",o:["La hemorragia es salida de sangre fuera de los vasos y el hematoma es sangre acumulada en un tejido","Son lo mismo","La hemorragia es acumulación y el hematoma es inflamación","La hemorragia ocurre solo en venas"],e:"Ambos usan la raíz hemo/hemato (sangre)."},
+  {q:"La capa que rodea y protege al corazón es el…",o:["pericardio","miocardio","endocardio","mediastino"],e:"El prefijo peri- significa alrededor."},
+  {q:"¿Qué estudio se usa para ver el interior de las arterias con contraste?",o:["Angiografía","Electrocardiograma","Análisis de troponinas","Venopunción"],e:"La angiografía visualiza arterias y venas para detectar obstrucciones."},
+  {q:"La hipertensión arterial es…",o:["presión arterial elevada de forma crónica","un ritmo cardíaco irregular","el bloqueo de una arteria coronaria","un agrandamiento del corazón"],e:"Es el principal factor de riesgo de accidente cerebrovascular (ACV) e infarto."},
+  {q:"Miopatía, miocarditis y miocardio comparten la raíz mio-, que significa…",o:["músculo","sangre","vena","corazón"],e:"Mio = músculo."},
+  {q:"La sístole y la diástole son…",o:["las fases de contracción y relajación del ciclo cardíaco","dos válvulas del corazón","dos capas del corazón","dos tipos de arterias"],e:"Sístole: contracción que expulsa la sangre. Diástole: relajación que permite el llenado."},
+  {q:"Para hacer una venopunción, el tecnólogo accede a…",o:["una vena","una arteria","un capilar pulmonar","el pericardio"],e:"Veno = vena; punción = pinchazo."},
+  {q:"Un paciente con taquicardia tiene…",o:["el ritmo cardíaco demasiado rápido","el ritmo cardíaco demasiado lento","la presión demasiado baja","los vasos endurecidos"],e:"Bradicardia es lo contrario: ritmo lento."}
+];
+
+/* ---------- Actividad: tarjetas ---------- */
+function mountCards(root, done){
+  let queue, known, flipped;
+  function start(){queue=shuffle(CARDS.map((c,i)=>i));known=0;flipped=false;draw()}
+  function draw(){
+    if(!queue.length){
+      root.innerHTML=`<div class="end"><p class="score">${CARDS.length} de ${CARDS.length}</p><p>Marcaste todas las tarjetas como aprendidas.</p><button class="btn" id="again">Repasar de nuevo</button></div>`;
+      root.querySelector('#again').onclick=start; done(); return;
+    }
+    const c=CARDS[queue[0]];
+    root.innerHTML=`<p class="count">Aprendidas ${known} de ${CARDS.length} · Quedan ${queue.length}</p>
+      <button class="card ${flipped?'flipped':''}" id="card" aria-label="Voltear tarjeta">
+        ${flipped?`<span class="def">${c[1]}</span>${c[2]?`<span class="root">${c[2]}</span>`:''}`:`<span class="term">${c[0]}</span><span class="hint">Toca para ver la definición</span>`}
+      </button>
+      <div class="row" ${flipped?'':'hidden'}>
+        <button class="btn ghost" id="rev">Repasar otra vez</button><button class="btn" id="know">Ya lo sé</button>
+      </div>`;
+    root.querySelector('#card').onclick=()=>{flipped=!flipped;draw()};
+    if(flipped){
+      root.querySelector('#know').onclick=()=>{queue.shift();known++;flipped=false;draw()};
+      root.querySelector('#rev').onclick=()=>{queue.push(queue.shift());flipped=false;draw()};
+    }
+  }
+  start();
+}
+
+/* ---------- Actividad: pareo de raíces ---------- */
+function mountMatch(root, done){
+  let sel=null, matched=0, tries=0;
+  const left=ROOTS.map((r,i)=>({t:r[0],i}));
+  const right=shuffle(ROOTS.map((r,i)=>({t:r[1],i})));
+  root.innerHTML=`<div class="match"><div class="col" id="L"></div><div class="col" id="R"></div></div>
+    <p class="tries" id="tries" aria-live="polite">Aciertos: 0 de ${ROOTS.length} · Intentos: 0</p>
+    <div class="suffixes"><h3>Sufijos frecuentes</h3><dl>
+      <dt>-itis</dt><dd>inflamación</dd><dt>-megalia</dt><dd>agrandamiento</dd><dt>-grafía</dt><dd>registro por imagen</dd>
+      <dt>-patía</dt><dd>enfermedad</dd><dt>-logía</dt><dd>estudio</dd><dt>-ula / -iola</dt><dd>pequeño</dd></dl></div>`;
+  const L=root.querySelector('#L'),R=root.querySelector('#R'),info=root.querySelector('#tries');
+  function mk(item,side,box){
+    const b=document.createElement('button');b.className='opt';b.textContent=item.t;b.dataset.i=item.i;b.dataset.side=side;
+    b.onclick=()=>pick(b,side);box.appendChild(b);
+  }
+  left.forEach(x=>mk(x,'L',L));right.forEach(x=>mk(x,'R',R));
+  function pick(b,side){
+    if(side==='L'){
+      L.querySelectorAll('.sel').forEach(e=>e.classList.remove('sel'));
+      sel=b;b.classList.add('sel');return;
+    }
+    if(!sel)return;
+    tries++;
+    if(sel.dataset.i===b.dataset.i){
+      [sel,b].forEach(e=>{e.classList.remove('sel');e.classList.add('right');e.disabled=true});
+      sel=null;matched++;
+    }else{
+      b.classList.add('shake');setTimeout(()=>b.classList.remove('shake'),500);
+    }
+    info.textContent=`Aciertos: ${matched} de ${ROOTS.length} · Intentos: ${tries}`;
+    if(matched===ROOTS.length){info.innerHTML=`<strong>Completado en ${tries} intentos.</strong> Ya puedes pasar a la siguiente actividad.`;done()}
+  }
+}
+
+/* ---------- Motor de preguntas ---------- */
+function mountQuiz(root, qs, opt, done){
+  let order,i,score;
+  function start(){order=shuffle(qs);i=0;score=0;show()}
+  function show(){
+    if(i>=order.length){return end()}
+    const q=order[i];
+    root.innerHTML=`<p class="count">Pregunta ${i+1} de ${order.length}</p><h3 class="q">${q.q}</h3><div class="opts"></div><div class="fb" aria-live="polite"></div>`;
+    const box=root.querySelector('.opts'),fb=root.querySelector('.fb');
+    shuffle(q.o).forEach(t=>{
+      const b=document.createElement('button');b.className='opt';b.textContent=t;
+      b.onclick=()=>{
+        const ok=t===q.o[0];
+        if(ok)score++;
+        box.querySelectorAll('.opt').forEach(x=>{x.disabled=true;if(x.textContent===q.o[0])x.classList.add('right')});
+        if(!ok)b.classList.add('wrong');
+        fb.innerHTML=`<p><span class="${ok?'ok':'no'}">${ok?'Correcto.':'Incorrecto.'}</span> ${q.e}</p><button class="btn" id="nx">${i+1<order.length?'Siguiente':'Ver resultado'}</button>`;
+        fb.querySelector('#nx').onclick=()=>{i++;show()};
+        fb.querySelector('#nx').focus();
+      };
+      box.appendChild(b);
+    });
+  }
+  function end(){
+    const pct=Math.round(score/order.length*100);
+    root.innerHTML=`<div class="end"><p class="score">${score} de ${order.length}</p><p>${pct>=80?'Muy bien. Dominas este contenido.':pct>=60?'Vas por buen camino. Repasa las tarjetas de lo que te costó.':'Te recomiendo volver a las tarjetas y al pareo antes de intentarlo otra vez.'}</p>
+      ${opt.final?'<div class="next-step"><p style="margin:0"><strong>Siguiente paso:</strong> regresa a la plataforma de Elentra para tomar la prueba.</p></div><br>':''}
+      <button class="btn ghost" id="again">Intentar de nuevo</button></div>`;
+    root.querySelector('#again').onclick=start;
+    done();
+  }
+  start();
+}
+
+/* ---------- Pestañas ---------- */
+const TABS = [
+  {id:"tarjetas",label:"Tarjetas",title:"Tarjetas de términos",how:"Toca la tarjeta para ver la definición. Marca «Ya lo sé» o «Repasar otra vez».",run:(r,d)=>mountCards(r,d)},
+  {id:"raices",label:"Raíces",title:"Raíces griegas y latinas",how:"Toca una raíz de la izquierda y luego su significado a la derecha.",run:(r,d)=>mountMatch(r,d)},
+  {id:"descomponer",label:"Descomponer",title:"Descompón la palabra",how:"Separa cada término en sus partes para deducir su significado.",run:(r,d)=>mountQuiz(r,Q_DESCOMPONER,{},d)},
+  {id:"corazon",label:"Corazón y vasos",title:"Corazón y vasos sanguíneos",how:"Estructuras, capas y tipos de vasos del sistema cardiovascular.",run:(r,d)=>mountQuiz(r,Q_CIRCULACION,{},d)},
+  {id:"estudios",label:"Estudios",title:"Estudios y patologías",how:"Relaciona cada estudio de diagnóstico con lo que muestra o mide.",run:(r,d)=>mountQuiz(r,Q_ESTUDIOS,{},d)},
+  {id:"practica",label:"Práctica final",title:"Práctica final",how:"Preguntas mixtas de todo el módulo, como repaso antes de la prueba.",run:(r,d)=>mountQuiz(r,Q_FINAL,{final:true},d)}
+];
+const tabsEl=document.getElementById('tabs'),panel=document.getElementById('panel');
+const finished=new Set();
+function select(i){
+  tabsEl.querySelectorAll('button').forEach((b,k)=>b.setAttribute('aria-selected',k===i?'true':'false'));
+  const t=TABS[i];
+  panel.innerHTML=`<h2>${t.title}</h2><p class="how">${t.how}</p><div id="body"></div>`;
+  t.run(panel.querySelector('#body'),()=>{finished.add(t.id);tabsEl.children[i].classList.add('done')});
+  try{history.replaceState(null,'','#'+t.id)}catch(e){}
+}
+TABS.forEach((t,i)=>{
+  const b=document.createElement('button');b.setAttribute('role','tab');
+  b.innerHTML=`<span class="dot" aria-hidden="true"></span>${t.label}`;
+  b.onclick=()=>select(i);tabsEl.appendChild(b);
+});
+const start=Math.max(0,TABS.findIndex(t=>'#'+t.id===location.hash));
+select(start);
+</script>
+</body>
+</html>
